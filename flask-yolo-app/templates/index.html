@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Medi-Check</title>
+    <style>
+        /* styles.css */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f7f9fc;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.left, .right {
+    width: 50%;
+    padding: 20px;
+}
+
+h1 {
+    color: #007bff;
+    margin-bottom: 5px;
+    font-size: 2em;
+    text-align: center;
+}
+
+h2 {
+    color: #0056b3;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    font-weight: normal;
+}
+
+form {
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+}
+
+select, input[type="file"], input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.doctor-image {
+    width: 150px;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.result-image {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.output-sentence, .treatment, .need-dentist {
+    font-size: 1.1em;
+    color: #333;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.button-link:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <img src="{{ url_for('static', filename='doctor.png') }}" alt="Doctor" class="doctor-image">
+            <h1>MediCheck</h1>
+            <h2>AI: Advanced Health Assessment & Treatment Insights</h2>
+            <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
+                <label for="health_type">Which one do you want to check?</label>
+                <select name="health_type" id="health_type">
+                    <!-- <option value="teeth">Teeth Health</option> -->
+                    <option value="tongue">Tongue Health</option>
+                    <option value="eye">Eye Health</option>  
+                    <option value="face">Face Health</option>                    
+                </select>
+                <input type="file" name="file" required>
+                <input type="submit" value="Upload your picture">
+            </form>
+        </div>
+        <div class="right">
+            {% if image %}
+                <h2>Detection Result</h2>
+                <img src="{{ url_for('static', filename='uploads/' + image) }}" alt="Detection Result" class="result-image">
+                {% if output_sentence %}
+                    <div class="output-sentence">{{ output_sentence }}</div>
+                {% endif %}
+                {% if treatment %}
+                    <div class="treatment">Recommended Treatment: {{ treatment }}</div>
+                {% endif %}
+                {% if need_dentist %}
+                    <div class="need-dentist">{{ need_dentist }}</div>
+                {% endif %}
+                {% if detected_classes %}
+                    <div class="buttons">
+                        <a href="medicine.html" class="button-link">Suggested Medications</a>
+                        <a href="doctor.html" class="button-link">Talk with Doctor</a>
+                        <a href="result.html" class="button-link">View Detailed Result</a>
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

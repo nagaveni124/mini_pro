@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Medicine Recommendations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .medicine-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .medicine-item img {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+        .medicine-details {
+            font-size: 1.1em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Medicine Recommendations</h1>
+        {% if medicines %}
+            {% for medicine in medicines %}
+                <div class="medicine-item">
+                    <img src="{{ url_for('static', filename='medicine/' + medicine['image']) }}" alt="{{ medicine['medicine'] }}">
+                    <div class="medicine-details">
+                        <div><strong>Disease:</strong> {{ medicine['disease'] }}</div>
+                        <div><strong>Medicine:</strong> {{ medicine['medicine'] }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No medicine found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

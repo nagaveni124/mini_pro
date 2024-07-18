@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Doctors</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 60%;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .doctor {
+            display: flex;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .doctor:last-child {
+            border-bottom: none;
+        }
+        .doctor img {
+            max-width: 250px;
+            height: 150px;
+            margin-right: 20px;
+        }
+        .doctor .doctor-info {
+            flex-grow: 1;
+        }
+        .doctor h2 {
+            margin: 0 0 5px 0;
+            color: #333;
+            font-size: 18px;
+        }
+        .doctor p {
+            margin: 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Available Doctors</h1>
+        {% for doctor in doctors %}
+        <div class="doctor">
+            <img src="{{ url_for('static', filename='doctors/' + doctor['Fullname'] + '.png') }}" alt="{{ doctor['Fullname'] }}">
+            <div class="doctor-info">
+                <h2>{{ doctor['Fullname'] }}</h2>
+                <p><b>Degree:</b> {{ doctor['Degree'] }}</p>
+                <p><b>Category:</b> {{ doctor['Category'] }}</p>
+                <p><b>Hospital:</b> {{ doctor['Hospital'] }}</p>
+                <p><b>Experience:</b> {{ doctor['Experience'] }}</p>
+                <p><b>Expertise:</b> {{ doctor['Expertise'] }}</p>
+                <p><b>Procedure:</b> {{ doctor['Procedure'] }}</p>
+            </div>
+        </div>
+        {% else %}
+            <p>No doctors available for the selected health type.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

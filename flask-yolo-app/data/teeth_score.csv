@@ -1,0 +1,11 @@
+level,treatment,need_dentist,description
+1,Regular brushing and flossing,0,No visible decay or cavities. Routine dental care recommended.
+2,Regular brushing and flossing,0,Minor decay or early-stage cavities. Routine dental care recommended.
+3,Regular brushing and flossing,0,Moderate decay or cavities. Routine dental care recommended.
+4,Dental filling,1,Advanced decay or cavities requiring filling. Dental visit recommended.
+5,Root canal treatment,1,Severe decay or infection requiring root canal therapy. Dental visit recommended.
+6,Book consultation with Dentist,1,Severe decay or infection requiring immediate professional assessment. Urgent dental consultation recommended.
+7,Tooth extraction,1,Condition necessitating removal of the affected tooth. Dental visit required.
+8,Orthodontic treatment,1,Dental misalignment or malocclusion requiring orthodontic intervention. Specialist consultation recommended.
+9,Dental surgery,1,Complex dental conditions requiring surgical intervention. Specialist consultation recommended.
+10,Emergency dental care,1,Acute dental emergencies requiring immediate professional attention. Urgent dental consultation recommended.
